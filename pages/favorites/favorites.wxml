@@ -1,0 +1,30 @@
+<view class="container">
+  <!-- 一键清除按钮 -->
+  <view class="header-buttons">
+    <view wx:if="{{!isEmpty}}" class="clear-all" bindtap="clearAllFavorites">
+      <text>一键清除</text>
+    </view>
+  </view>
+
+  <!-- 收藏列表 -->
+  <view wx:if="{{!isEmpty}}" class="favorites-list">
+    <view wx:for="{{favorites}}" wx:key="uniqueKey" class="favorite-item">
+      <view class="question-content" bindtap="goToQuestionDetail" 
+            data-id="{{item.questionId || item.id}}" data-bank-id="{{item.bankId}}">
+        <text>{{item.questionText || item.question || '未知题目'}}</text>
+      </view>
+      <view class="remove-btn" bindtap="removeFavorite" data-index="{{index}}">
+        <text>取消收藏</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view wx:if="{{isEmpty}}" class="empty-tip">
+    <view class="empty-icon">
+      <text class="icon-star">&#9734;</text>
+    </view>
+    <text class="empty-text">暂无收藏题目</text>
+    <text class="empty-subtext">去答题页面收藏题目吧~</text>
+  </view>
+</view>

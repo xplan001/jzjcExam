@@ -1,0 +1,1 @@
+module.exports = [{"id":1,"type":"single","question":"建筑工程质量验收的主要依据是？","options":["A. 设计图纸","B. 施工合同","C. 工程质量验收规范","D. 以上都是"],"answer":"D"},{"id":2,"type":"multiple","question":"建筑工程质量检测的主要内容包括？","options":["A. 材料性能检测","B. 结构性能检测","C. 施工工艺检测","D. 环境影响检测"],"answer":["A","B","C"]}]

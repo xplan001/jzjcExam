@@ -1,0 +1,51 @@
+<!-- 题库列表页面 -->
+<view class="container">
+  <!-- 页面标题 -->
+  <view class="page-title">题库列表</view>
+
+  <!-- 全局错误提示 -->
+  <view class="error-bar" wx:if="{{globalLoadError}}">
+    <text class="error-text">部分题库加载失败</text>
+    <button class="refresh-all-btn" bindtap="refreshAllBanks">刷新全部</button>
+  </view>
+
+  <!-- 搜索框 -->
+  <view class="search-box">
+    <input type="text" placeholder="搜索题库..." bindinput="onSearchInput"/>
+    <icon type="search" size="18" class="search-icon" bindtap="navigateToSearch"/>
+  </view>
+
+  <!-- 题库列表 -->
+  <scroll-view class="bank-list" scroll-y>
+    <view wx:for="{{questionBanks}}" wx:key="index" class="bank-item">
+      <view class="bank-header">
+        <text class="bank-title">{{item.title}}</text>
+        <!-- 加载状态指示器 -->
+        <view class="status-indicator">
+        <!-- 加载中 -->
+        <view class="loading" wx:if="{{item.loadStatus === 'loading'}}">
+          <icon type="loading" size="14" class="loading-icon"/>
+          <text class="loading-text">加载中...</text>
+        </view>
+        
+        <!-- 加载成功 -->
+        <view class="success" wx:if="{{item.loadStatus === 'success'}}">
+          <icon type="success" size="14" class="success-icon"/>
+        </view>
+        
+        <!-- 加载失败 -->
+        <view class="error" wx:if="{{item.loadStatus === 'error'}}">
+          <icon type="warn" size="14" class="error-icon"/>
+          <button class="refresh-btn" bindtap="refreshBank" data-id="{{item.id}}">刷新</button>
+        </view>
+      </view>
+      </view>
+      <view class="bank-info" bindtap="goToBankDetail" data-index="{{index}}">
+        <text class="bank-description">{{item.description}}</text>
+        <view class="bank-meta">
+          <text class="bank-count">{{item.questionCount}} 题</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

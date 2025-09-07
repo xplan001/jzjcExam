@@ -1,0 +1,32 @@
+<!-- 编辑资料页面 -->
+<view class="container">
+  <view class="header">
+    <text class="back-btn" bindtap="onBackTap">←</text>
+    <text class="title">编辑资料</text>
+  </view>
+
+  <view class="profile-form">
+    <!-- 头像 -->
+    <view class="form-item" bindtap="onAvatarTap">
+      <text class="label">头像</text>
+      <view class="avatar-container">
+        <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+        <icon type="arrowright" size="16" class="arrow-icon"/>
+      </view>
+    </view>
+
+    <!-- 昵称 -->
+    <view class="form-item" bindtap="onNicknameTap">
+      <text class="label">昵称</text>
+      <view class="content-container">
+        <text class="content">{{userInfo.nickname}}</text>
+        <icon type="arrowright" size="16" class="arrow-icon"/>
+      </view>
+    </view>
+  </view>
+
+  <!-- 提示信息 -->
+  <view class="tips">
+    <text>头像和昵称仅在本地展示，不会上传到服务器</text>
+  </view>
+</view>

@@ -1,0 +1,66 @@
+<!-- 个人中心页面 -->
+<view class="container">
+  <!-- 用户信息区域 -->
+  <view class="user-info">
+    <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+    <view class="user-details">
+      <text class="nickname">{{userInfo.nickname}}</text>
+      <text class="user-id">用户ID: {{userInfo.userId || '123456'}}</text>
+    </view>
+    <button class="edit-btn" bindtap="editUserProfile">编辑资料</button>
+  </view>
+
+  <!-- 数据统计卡片 -->
+  <view class="stats-cards">
+    <view class="stat-card">
+      <text class="stat-number">{{totalAnswered}}</text>
+      <text class="stat-label">已答题数</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-number">{{correctRate}}%</text>
+      <text class="stat-label">正确率</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-number">{{favoriteCount}}</text>
+      <text class="stat-label">收藏题目</text>
+    </view>
+  </view>
+
+  <!-- 收藏和历史记录区域 -->
+  <view class="content-section">
+    <!-- 收藏题目 -->
+    <view class="section-header">
+      <text class="section-title">我的收藏</text>
+      <navigator url="/pages/favorites/favorites" class="view-all">查看全部</navigator>
+    </view>
+
+    <view class="favorite-list">
+      <view wx:if="{{favorites.length === 0}}" class="empty-tip">
+        <icon type="star" size="60" color="#ccc"/>
+        <text>暂无收藏题目</text>
+      </view>
+      <view wx:for="{{favorites}}" wx:key="id" class="favorite-item" bindtap="goToQuestionDetail" data-type="favorite" data-index="{{index}}">
+        <text class="favorite-text">{{item.question}}</text>
+        <text class="favorite-type">{{item.type}}</text>
+      </view>
+    </view>
+
+    <!-- 历史记录 -->
+    <view class="section-header">
+      <text class="section-title">答题历史</text>
+      <navigator url="/pages/history/history" class="view-all">查看全部</navigator>
+    </view>
+
+    <view class="history-list">
+      <view wx:if="{{history.length === 0}}" class="empty-tip">
+        <icon type="history" size="60" color="#ccc"/>
+        <text>暂无答题记录</text>
+      </view>
+      <view wx:for="{{history}}" wx:key="id" class="history-item" bindtap="goToQuestionDetail" data-type="history" data-index="{{index}}">
+        <text class="history-date">{{item.date || item.timeStr}}</text>
+        <text class="history-text">{{item.question}}</text>
+        <text class="history-result {{item.isCorrect ? 'correct' : 'incorrect'}}">{{item.isCorrect ? '正确' : '错误'}}</text>
+      </view>
+    </view>
+  </view>
+</view>

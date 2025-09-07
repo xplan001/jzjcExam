@@ -1,0 +1,266 @@
+.container {
+  padding: 20rpx;
+  box-sizing: border-box;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 加载指示器样式 */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 300rpx;
+  width: 100%;
+  margin: 100rpx 0;
+}
+
+.loading-spinner {
+  width: 80rpx;
+  height: 80rpx;
+  border: 6rpx solid #f3f3f3;
+  border-top: 6rpx solid #ff7d00;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  margin-top: 30rpx;
+  font-size: 28rpx;
+  color: #666666;
+}
+
+/* 骨架屏样式 */
+.skeleton-container {
+  padding: 30rpx;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.skeleton-item {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+  border-radius: 8rpx;
+  margin-bottom: 20rpx;
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-title {
+  height: 40rpx;
+  width: 40%;
+}
+
+.skeleton-desc {
+  height: 80rpx;
+  width: 100%;
+}
+
+.skeleton-stats {
+  display: flex;
+  justify-content: space-between;
+  margin: 20rpx 0;
+}
+
+.skeleton-stat {
+  height: 60rpx;
+  width: 30%;
+}
+
+.skeleton-question {
+  height: 100rpx;
+  width: 100%;
+}
+
+/* 空状态样式 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 600rpx;
+  text-align: center;
+}
+
+.empty-icon {
+  width: 160rpx;
+  height: 160rpx;
+  background-color: #f5f5f5;
+  border-radius: 50%;
+  margin-bottom: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-icon::after {
+  content: "📚";
+  font-size: 80rpx;
+}
+
+.empty-title {
+  font-size: 36rpx;
+  color: #333333;
+  margin-bottom: 20rpx;
+}
+
+.empty-desc {
+  font-size: 28rpx;
+  color: #999999;
+  margin-bottom: 40rpx;
+  width: 60%;
+}
+
+.empty-button {
+  background-color: #ff7d00;
+  color: #ffffff;
+  border-radius: 50rpx;
+  font-size: 32rpx;
+  padding: 10rpx 40rpx;
+}
+
+.bank-intro {
+  margin-bottom: 30rpx;
+  padding: 30rpx;
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.bank-title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.bank-desc {
+  font-size: 28rpx;
+  color: #666666;
+  line-height: 1.5;
+  margin-bottom: 20rpx;
+  display: block;
+}
+
+.bank-stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20rpx;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #ff7d00;
+  display: block;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.question-list {
+  flex: 1;
+  height: 100%;
+}
+
+.question-item {
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  background-color: #ffffff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: flex-start;
+}
+
+.question-number {
+  width: 50rpx;
+  height: 50rpx;
+  background-color: #ff7d00;
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  font-weight: bold;
+  margin-right: 20rpx;
+  flex-shrink: 0;
+}
+
+.question-content {
+  flex: 1;
+}
+
+.question-text {
+  font-size: 30rpx;
+  color: #333333;
+  line-height: 1.5;
+  display: block;
+  margin-bottom: 10rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.question-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10rpx;
+}
+
+.question-type {
+  font-size: 24rpx;
+  color: #666666;
+  background-color: #f5f5f5;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+.completed-icon {
+  color: #07c160;
+  margin-right: 10rpx;
+}
+
+.favorite-icon {
+  color: #ffcc00;
+}
+
+.bottom-button {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100rpx;
+  background-color: #ff7d00;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  box-shadow: 0 -4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.button-text {
+  color: #ffffff;
+}

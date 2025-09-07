@@ -1,0 +1,36 @@
+<view class="container">
+  <view class="search-bar">
+    <input placeholder="搜索历史记录" bindinput="onSearchInput" />
+  </view>
+  <view class="header">
+    <text class="title">历史记录</text>
+    <view class="btn-container">
+      <view class="clear-btn" bindtap="clearAllHistory" wx:if="{{!isEmpty}}">清空</view>
+    </view>
+  </view>
+
+  <view class="empty-container" wx:if="{{isEmpty}}">
+    <image class="empty-image" src="/images/avatar-default.png" mode="aspectFit"></image>
+    <text class="empty-text">暂无历史记录</text>
+  </view>
+
+  <view class="history-list" wx:else>
+    <view class="history-item" wx:for="{{historyList}}" wx:key="id" bindtap="goToQuestionDetail" data-item="{{item}}">
+      <view class="item-content">
+        <view class="item-header">
+          <text class="item-title">{{item.questionText || item.question || '未知题目'}}</text>
+          <view class="item-status {{item.isCorrect ? 'correct' : 'wrong'}}">
+            {{item.isCorrect ? '答对' : '答错'}}
+          </view>
+        </view>
+        <view class="item-info">
+          <text class="item-time">{{item.timeStr || '未知时间'}}</text>
+          <text class="item-bank">{{item.bankName || '未知科目'}}</text>
+        </view>
+      </view>
+      <view class="delete-btn" catchtap="deleteHistoryItem" data-index="{{index}}">
+        <icon type="clear" size="20" color="#999"/>
+      </view>
+    </view>
+  </view>
+</view>

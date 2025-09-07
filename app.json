@@ -1,0 +1,40 @@
+{
+  "pages": [
+    "pages/questionBank/questionBank",
+    "pages/profile/profile",
+    "pages/editProfile/editProfile",
+    "pages/bankDetail/bankDetail",
+    "pages/questionDetail/questionDetail",
+    "pages/history/history",
+    "pages/favorites/favorites",
+    "pages/search/search"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "题库小程序",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#ff7a00",
+    "backgroundColor": "#fff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/questionBank/questionBank",
+        "text": "题库",
+        "iconPath": "images/icon_question.png",
+        "selectedIconPath": "images/icon_question_selected.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/icon_profile.png",
+        "selectedIconPath": "images/icon_profile_selected.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

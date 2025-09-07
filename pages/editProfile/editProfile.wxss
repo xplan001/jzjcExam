@@ -1,0 +1,95 @@
+.container {
+  padding: 20rpx;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+/* 头部样式 */
+.header {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  margin-bottom: 30rpx;
+}
+
+.back-btn {
+  font-size: 40rpx;
+  color: #333;
+  margin-right: 20rpx;
+}
+
+.title {
+  font-size: 36rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+/* 表单样式 */
+.profile-form {
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 0 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.05);
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.form-item:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-size: 30rpx;
+  color: #333;
+  width: 160rpx;
+}
+
+/* 头像容器 */
+.avatar-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+}
+
+/* 内容容器 */
+.content-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.arrow-icon {
+  color: #ccc;
+}
+
+/* 提示信息 */
+.tips {
+  margin-top: 40rpx;
+  padding: 0 20rpx;
+}
+
+.tips text {
+  font-size: 26rpx;
+  color: #999;
+  text-align: center;
+  display: block;
+}

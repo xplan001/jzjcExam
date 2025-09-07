@@ -1,0 +1,75 @@
+<!-- 搜索页面 -->
+<view class="container">
+  <!-- 搜索框 -->
+  <view class="search-container">
+    <view class="search-input-container">
+      <icon type="search" size="14" class="search-icon"/>
+      <input
+        class="search-input"
+        placeholder="搜索题目..."
+        value="{{searchText}}"
+        bindinput="onInput"
+      />
+      <text wx:if="{{searchText}}" class="clear-btn" bindtap="clearInput">×</text>
+    </view>
+    <button class="search-btn" bindtap="onSearch">搜索</button>
+  </view>
+
+  <!-- 搜索结果区域 -->
+  <view class="results-container" wx:if="{{searchResults.length > 0}}">
+    <view class="results-title">搜索结果 ({{searchResults.length}})</view>
+    <view class="result-list">
+      <view
+        wx:for="{{searchResults}}"
+        wx:key="id"
+        class="result-item"
+        bindtap="clickResultItem"
+        data-id="{{item.id}}"
+        data-bankId="{{item.bankId}}"
+      >
+        <text class="result-text">{{item.question}}</text>
+        <text class="result-type">{{item.type}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 历史搜索和热门搜索区域 -->
+  <view class="search-suggestions" wx:if="{{searchResults.length === 0}}">
+    <!-- 历史搜索 -->
+    <view class="history-section" wx:if="{{historySearches.length > 0}}">
+      <view class="section-header">
+        <text class="section-title">历史搜索</text>
+        <text class="clear-btn" bindtap="clearHistory">清除</text>
+      </view>
+      <view class="history-tags">
+        <text
+          wx:for="{{historySearches}}"
+          wx:key="index"
+          class="history-tag"
+          bindtap="clickHistoryItem"
+          data-text="{{item}}"
+        >
+          {{item}}
+        </text>
+      </view>
+    </view>
+
+    <!-- 热门搜索 -->
+    <view class="hot-section">
+      <view class="section-header">
+        <text class="section-title">热门搜索</text>
+      </view>
+      <view class="hot-tags">
+        <text
+          wx:for="{{hotSearches}}"
+          wx:key="index"
+          class="hot-tag"
+          bindtap="clickHotItem"
+          data-text="{{item}}"
+        >
+          {{item}}
+        </text>
+      </view>
+    </view>
+  </view>
+</view>

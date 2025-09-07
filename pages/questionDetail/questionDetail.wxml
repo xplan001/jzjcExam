@@ -1,0 +1,69 @@
+<!-- 题目详情页面 -->
+<view class="container" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
+  <!-- 题目导航 -->
+  <view class="question-nav">
+    <text class="question-type">{{question.type}}</text>
+    <text class="question-position">第{{currentQuestionIndex}}题/共{{totalQuestions}}题</text>
+    <button class="favorite-btn" bindtap="toggleFavorite" hover-class="button-hover">
+      <icon type="{{isFavorite ? 'success' : 'circle'}}" size="20" class="{{isFavorite ? 'favorite-active' : ''}}"/>
+      <text class="{{isFavorite ? 'favorite-active' : ''}}">{{isFavorite ? '已收藏' : '收藏'}}</text>
+    </button>
+  </view>
+  <!-- 题目内容 -->
+  <view class="question-content">
+    <text class="question-text">{{question.question}}</text>
+  </view>
+
+  <!-- 选项区域 - 单选题和多选题 -->
+  <view class="options-container {{isMultipleChoice ? 'multiple-choice' : ''}}" wx:if="{{!isJudgment && question.options && question.options.length > 0}}">
+    <view wx:for="{{question.options}}" wx:key="index" class="option-item" data-index="{{index}}" bindtap="selectOption" hover-class="none">
+      <view class="option-inner {{isMultipleChoice ? (selectedOptionsMap[index] ? 'selected' : '') : (selectedOption === index ? 'selected' : '')}} {{answered && correctOptions.includes(index) ? 'correct' : ''}} {{answered && ((isMultipleChoice && selectedOptionsMap[index] && !correctOptions.includes(index)) || (!isMultipleChoice && selectedOption === index && !correctOptions.includes(index))) ? 'incorrect' : ''}}">
+        <view class="option-index">{{String.fromCharCode(65 + index)}}</view>
+        <text class="option-text">{{item}}</text>
+        <icon wx:if="{{answered && correctOptions.includes(index)}}" type="success" size="24" class="option-icon correct-icon"/>
+        <icon wx:if="{{answered && ((isMultipleChoice && selectedOptionsMap[index] && !correctOptions.includes(index)) || (!isMultipleChoice && selectedOption === index && !correctOptions.includes(index)))}}" type="clear" size="24" class="option-icon incorrect-icon"/>
+      </view>
+    </view>
+  </view>
+
+  <!-- 判断题区域 -->
+  <view class="options-container" wx:if="{{isJudgment}}">
+    <view class="option-item" bindtap="selectOption" data-index="0" hover-class="none">
+      <view class="option-inner {{selectedOption === 0 ? 'selected' : (answered && correctOptions.includes(0) ? 'correct' : (answered && selectedOption === 0 ? 'incorrect' : ''))}}">
+        <view class="option-index">A</view>
+        <text class="option-text">对</text>
+        <icon wx:if="{{answered && correctOptions.includes(0)}}" type="success" size="24" class="option-icon correct-icon"/>
+        <icon wx:if="{{answered && selectedOption === 0 && !correctOptions.includes(0)}}" type="clear" size="24" class="option-icon incorrect-icon"/>
+      </view>
+    </view>
+    <view class="option-item" bindtap="selectOption" data-index="1" hover-class="none">
+      <view class="option-inner {{selectedOption === 1 ? 'selected' : (answered && correctOptions.includes(1) ? 'correct' : (answered && selectedOption === 1 ? 'incorrect' : ''))}}">
+        <view class="option-index">B</view>
+        <text class="option-text">错</text>
+        <icon wx:if="{{answered && correctOptions.includes(1)}}" type="success" size="24" class="option-icon correct-icon"/>
+        <icon wx:if="{{answered && selectedOption === 1 && !correctOptions.includes(1)}}" type="clear" size="24" class="option-icon incorrect-icon"/>
+      </view>
+    </view>
+  </view>
+
+
+  <!-- 答案解析区域 -->
+  <view class="answer-analysis-toggle" bindtap="toggleAnalysis" hover-class="button-hover">
+    <view class="analysis-header">
+      <text class="analysis-title">{{answered ? '答案解析' : '查看解析'}}</text>
+      <icon type="{{showAnalysis ? 'up' : 'down'}}" size="18" color="#4285f4"/>
+    </view>
+  </view>
+  <view class="answer-analysis-content" wx:if="{{showAnalysis}}">
+    <text class="correct-answer"><text class="label">正确答案：</text>{{formattedAnswer}}</text>
+    <text class="analysis-text"><text class="label">解析：</text>{{question.analysis || '暂无解析'}}</text>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="bottom-buttons">
+    <button class="prev-btn" bindtap="goToPrevQuestion" hover-class="button-hover">上一题</button>
+    <button wx:if="{{!answered}}" class="submit-btn" bindtap="submitAnswer" hover-class="button-hover">提交答案</button>
+    <button wx:if="{{!answered}}" class="view-analysis-btn" bindtap="toggleAnalysis" hover-class="button-hover">查看解析</button>
+    <button wx:if="{{answered}}" class="next-btn" bindtap="goToNextQuestion" hover-class="button-hover">下一题</button>
+  </view>
+</view>
