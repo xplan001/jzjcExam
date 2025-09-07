@@ -98,7 +98,7 @@ Page({
     const answerLetter = answerStr.toUpperCase();
     let answerIndex = -1;
 
-    // 直接匹配A或B
+    // 直接匹配A或B，这是最可靠的来源
     if (answerLetter === 'A') {
       answerIndex = 0;
     } else if (answerLetter === 'B') {
@@ -106,32 +106,6 @@ Page({
     } else {
       console.warn(`判断题答案字母${answerLetter}无效，使用默认索引0`);
       answerIndex = 0;
-    }
-
-    // 额外验证：确保找到的选项包含答案字母或语义匹配
-    if (options[answerIndex]) {
-      const optionText = String(options[answerIndex] || '').toUpperCase();
-      if (!optionText.includes(answerLetter) && 
-          !optionText.includes('对') && 
-          !optionText.includes('正确') && 
-          !optionText.includes('YES') && 
-          !optionText.includes('TRUE')) {
-        console.warn(`判断题答案匹配警告: 选项${answerIndex}不包含答案字母${answerLetter}或相关语义，重新匹配`);
-        // 尝试直接匹配选项中的字母或语义
-        answerIndex = options.findIndex(option => {
-          if (!option) return false;
-          const optText = String(option).toUpperCase();
-          return optText.includes(answerLetter) || 
-                 optText.includes('对') || 
-                 optText.includes('正确') || 
-                 optText.includes('YES') || 
-                 optText.includes('TRUE');
-        });
-        // 如果仍然找不到，使用字母顺序
-        if (answerIndex === -1) {
-          answerIndex = answerLetter === 'A' ? 0 : 1;
-        }
-      }
     }
 
     console.log(`判断题答案解析完成: ${answerStr} -> 索引${answerIndex}`);
